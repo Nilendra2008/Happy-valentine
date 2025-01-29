@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       letter.classList.remove("hidden")
       letter.classList.add("visible")
-    }, 50000)
+    }, 500)
 
     setTimeout(() => {
       surpriseSection.classList.add("hidden")
