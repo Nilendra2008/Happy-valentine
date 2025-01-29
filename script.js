@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       letter.classList.remove("hidden")
       letter.classList.add("visible")
-    }, 500)
+    }, 50000)
 
     setTimeout(() => {
       surpriseSection.classList.add("hidden")
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Timer function
   function startTimer() {
-    const startDate = new Date("2024-01-09").getTime() // Change this to your relationship start date
+    const startDate = new Date("2023-02-14").getTime() // Change this to your relationship start date
     const timerElement = document.getElementById("timer")
 
     function updateTimer() {
@@ -80,5 +80,41 @@ document.addEventListener("DOMContentLoaded", () => {
       }, index * 500)
     })
   }
+
+  // Add this new function to create balloons
+  function createBalloons() {
+    const colors = ["#ff6b6b", "#f06292", "#ba68c8", "#4fc3f7", "#4dd0e1", "#81c784", "#fff176"]
+    const balloonContainer = document.createElement("div")
+    balloonContainer.style.position = "fixed"
+    balloonContainer.style.top = "0"
+    balloonContainer.style.left = "0"
+    balloonContainer.style.width = "100%"
+    balloonContainer.style.height = "100%"
+    balloonContainer.style.pointerEvents = "none"
+    balloonContainer.style.zIndex = "-1"
+    document.body.appendChild(balloonContainer)
+
+    for (let i = 0; i < 20; i++) {
+      createBalloon(balloonContainer, colors)
+    }
+  }
+
+  function createBalloon(container, colors) {
+    const balloon = document.createElement("div")
+    balloon.className = "balloon"
+    balloon.style.left = `${Math.random() * 100}%`
+    balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]
+    balloon.style.animationDuration = `${15 + Math.random() * 10}s`
+    balloon.style.animationDelay = `${Math.random() * 5}s`
+    container.appendChild(balloon)
+
+    balloon.addEventListener("animationend", () => {
+      balloon.remove()
+      createBalloon(container, colors)
+    })
+  }
+
+  // Call the createBalloons function
+  createBalloons()
 })
 
