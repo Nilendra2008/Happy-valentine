@@ -8,22 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const backgroundMusic = document.getElementById("background-music")
   const poem = document.getElementById("poem")
   const poemLines = poem.querySelectorAll("p")
-
-  // Create floating hearts
-  function createHeart() {
-    const heart = document.createElement("div")
-    heart.classList.add("heart")
-    heart.style.left = Math.random() * 100 + "vw"
-    heart.style.animationDuration = Math.random() * 5 + 10 + "s"
-    heart.style.opacity = Math.random() * 0.5 + 0.5 // Add varying opacity
-    document.body.appendChild(heart)
-
-    setTimeout(() => {
-      heart.remove()
-    }, 15000)
-  }
-
-  setInterval(createHeart, 500)
+  const memoryGallery = document.getElementById("memory-gallery")
 
   // Play background music
   backgroundMusic.play()
@@ -49,18 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
       mainSection.scrollIntoView({ behavior: "smooth" })
       startTimer()
       animatePoem()
+      animateMemories()
     }, 5000)
-  })
-
-  // Add touch event for envelope on mobile
-  envelope.addEventListener("touchstart", (e) => {
-    e.preventDefault() // Prevent default touch behavior
-    envelope.click() // Trigger the click event
   })
 
   // Timer function
   function startTimer() {
-    const startDate = new Date("2023-02-14").getTime() // Change this to your relationship start date
+    const startDate = new Date("2024-01-09").getTime() // Change this to your relationship start date
     const timerElement = document.getElementById("timer")
 
     function updateTimer() {
@@ -87,6 +67,17 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         line.classList.add("visible")
       }, index * 2000)
+    })
+  }
+
+  // Animate memories
+  function animateMemories() {
+    const memories = memoryGallery.querySelectorAll("img")
+    memories.forEach((memory, index) => {
+      setTimeout(() => {
+        memory.style.opacity = "1"
+        memory.style.transform = "scale(1)"
+      }, index * 500)
     })
   }
 })
