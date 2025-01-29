@@ -1,0 +1,209 @@
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Arial", sans-serif;
+  overflow-x: hidden;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+
+#landing-page,
+#surprise-section,
+#main-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffe6e6;
+  position: relative;
+  overflow: hidden;
+}
+
+#main-heading {
+  font-size: 2em; /* Reduced from 3em */
+  color: #ff4d4d;
+  text-align: center;
+  animation: glow 2s ease-in-out infinite alternate;
+  padding: 0 20px;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff4d4d, 0 0 20px #ff4d4d;
+  }
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff4d4d, 0 0 40px #ff4d4d;
+  }
+}
+
+#surprise-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em; /* Reduced from 1.2em */
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#surprise-button:hover {
+  background-color: #ff3333;
+  transform: scale(1.1);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d4d;
+  transform: rotate(45deg);
+  animation: float-up 15s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: #ff4d4d;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before {
+  left: -10px;
+}
+
+.heart::after {
+  top: -10px;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) rotate(45deg);
+  }
+  100% {
+    transform: translateY(-100vh) rotate(45deg);
+  }
+}
+
+#envelope {
+  width: 80%; /* Changed from fixed width */
+  max-width: 300px;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  background-color: #fff;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+#envelope-flap {
+  width: 0;
+  height: 0;
+  border-left-width: 40vw;
+  border-right-width: 40vw;
+  border-top-width: 26.67vw;
+  border-left: 40vw solid transparent;
+  border-right: 40vw solid transparent;
+  border-top: 26.67vw solid #ff4d4d;
+  max-width: 150px;
+  max-height: 100px;
+  position: absolute;
+  top: 0;
+  transition: all 0.5s ease;
+}
+
+#envelope.open #envelope-flap {
+  transform: rotateX(180deg);
+  z-index: -1;
+}
+
+#letter {
+  padding: 20px;
+  background-color: #fff;
+  font-family: "Dancing Script", cursive;
+  font-size: 1em; /* Reduced from 1.2em */
+  line-height: 1.5;
+  color: #333;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#letter.visible {
+  opacity: 1;
+}
+
+#timer {
+  font-size: 1.5em; /* Reduced from 2em */
+  color: #ff4d4d;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#poem {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.2em; /* Reduced from 1.5em */
+  color: #ff4d4d;
+  text-align: center;
+  padding: 0 20px;
+}
+
+#poem p {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#poem p.visible {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .heart {
+    width: 15px;
+    height: 15px;
+  }
+
+  .heart::before,
+  .heart::after {
+    width: 15px;
+    height: 15px;
+  }
+
+  #main-heading {
+    font-size: 1.5em;
+  }
+
+  #timer {
+    font-size: 1.2em;
+  }
+
+  #poem {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  #main-heading {
+    font-size: 1.2em;
+  }
+
+  #timer {
+    font-size: 1em;
+  }
+}
+
